@@ -28,7 +28,7 @@ resource "azurerm_app_service_plan" "asp" {
     capacity = lookup(var.settings.sku, "capacity", null)
   }
 
-  app_service_environment_id = var.app_service_environment_id
+  app_service_environment_id = try(var.settings.app_service_environment_id, var.app_service_environment_id)
   tags                       = local.tags
 
   timeouts {
