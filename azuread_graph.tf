@@ -101,6 +101,10 @@ output "azuread_graph_application_certificate" {
   value = module.azuread_graph_application_certificate
 }
 
+output "azuread_application_certificates" {
+  value = module.azuread_graph_application_certificate
+}
+
 module "azuread_graph_application_federated_identity_credential" {
   source   = "./modules/azuread_graph/application_federated_identity_credential"
   for_each = local.azuread.azuread_application_federated_identity_credentials
