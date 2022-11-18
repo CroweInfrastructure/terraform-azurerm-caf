@@ -7,7 +7,7 @@ data "azuread_application_template" "template" {
 resource "azuread_application" "app" {
   display_name = try(var.settings.display_name, var.settings.application_name, null)
   dynamic "api" {
-    for_each = try(var.settings.api, null) != null ? var.settings.api : []
+    for_each = try(var.settings.api, null) != null ? [var.settings.api] : []
     content {
       known_client_applications = try(api.value.known_client_applications, null)
       mapped_claims_enabled     = try(api.value.mapped_claims_enabled, null)
