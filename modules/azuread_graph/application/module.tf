@@ -58,7 +58,7 @@ resource "azuread_application" "app" {
     for_each = try(var.settings.optional_claims, null) != null ? [var.settings.optional_claims] : []
     content {
       dynamic "access_token" {
-        for_each = try(optional_claims.value.access_token, null) != null ? [optional_claims.value.access_token] : []
+        for_each = try(optional_claims.value.access_token, null) != null ? optional_claims.value.access_token : []
         content {
           name                  = access_token.value.name
           source                = try(access_token.value.source, null)
@@ -67,7 +67,7 @@ resource "azuread_application" "app" {
         }
       }
       dynamic "id_token" {
-        for_each = try(optional_claims.value.id_token, null) != null ? [optional_claims.value.id_token] : []
+        for_each = try(optional_claims.value.id_token, null) != null ? optional_claims.value.id_token : []
         content {
           name                  = id_token.value.name
           source                = try(id_token.value.source, null)
@@ -76,7 +76,7 @@ resource "azuread_application" "app" {
         }
       }
       dynamic "saml2_token" {
-        for_each = try(optional_claims.value.saml2_token, null) != null ? [optional_claims.value.saml2_token] : []
+        for_each = try(optional_claims.value.saml2_token, null) != null ? optional_claims.value.saml2_token : []
         content {
           name                  = saml2_token.value.name
           source                = try(saml2_token.value.source, null)
