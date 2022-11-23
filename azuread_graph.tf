@@ -136,6 +136,10 @@ output "azuread_graph_application_password" {
   value = module.azuread_graph_application_password
 }
 
+output "azuread_application_password" {
+  value = module.azuread_graph_application_password
+}
+
 module "azuread_graph_application_pre_authorized" {
   source   = "./modules/azuread_graph/application_pre_authorized"
   for_each = local.azuread.azuread_application_pre_authorizeds
@@ -269,6 +273,10 @@ module "azuread_graph_service_principal" {
   }
 }
 output "azuread_graph_service_principal" {
+  value = module.azuread_graph_service_principal
+}
+
+output "azuread_service_principal" {
   value = module.azuread_graph_service_principal
 }
 
