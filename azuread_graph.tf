@@ -136,7 +136,7 @@ output "azuread_graph_application_password" {
   value = module.azuread_graph_application_password
 }
 
-output "azuread_application_password" {
+output "azuread_application_passwords" {
   value = module.azuread_graph_application_password
 }
 
@@ -276,7 +276,7 @@ output "azuread_graph_service_principal" {
   value = module.azuread_graph_service_principal
 }
 
-output "azuread_service_principal" {
+output "azuread_service_principals" {
   value = module.azuread_graph_service_principal
 }
 
