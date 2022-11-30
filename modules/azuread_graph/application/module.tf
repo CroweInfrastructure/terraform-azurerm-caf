@@ -7,12 +7,12 @@ data "azuread_application_template" "template" {
 resource "azuread_application" "app" {
   display_name = try(var.settings.display_name, var.settings.application_name, null)
   dynamic "api" {
-    for_each = try(var.settings.api, null) != null ? [var.settings.api] : []
+    for_each = try(var.settings.api, null) != null ? var.settings.api : []
     content {
       known_client_applications = try(api.value.known_client_applications, null)
       mapped_claims_enabled     = try(api.value.mapped_claims_enabled, null)
       dynamic "oauth2_permission_scope" {
-        for_each = try(api.value.oauth2_permission_scope, null) != null ? [api.value.oauth2_permission_scope] : []
+        for_each = try(api.value.oauth2_permission_scope, null) != null ? api.value.oauth2_permission_scope : []
         content {
           id                         = oauth2_permission_scope.value.id
           admin_consent_description  = try(oauth2_permission_scope.value.admin_consent_description, null)
@@ -58,7 +58,7 @@ resource "azuread_application" "app" {
     for_each = try(var.settings.optional_claims, null) != null ? [var.settings.optional_claims] : []
     content {
       dynamic "access_token" {
-        for_each = try(optional_claims.value.access_token, null) != null ? [optional_claims.value.access_token] : []
+        for_each = try(optional_claims.value.access_token, null) != null ? optional_claims.value.access_token : []
         content {
           name                  = access_token.value.name
           source                = try(access_token.value.source, null)
@@ -67,7 +67,7 @@ resource "azuread_application" "app" {
         }
       }
       dynamic "id_token" {
-        for_each = try(optional_claims.value.id_token, null) != null ? [optional_claims.value.id_token] : []
+        for_each = try(optional_claims.value.id_token, null) != null ? optional_claims.value.id_token : []
         content {
           name                  = id_token.value.name
           source                = try(id_token.value.source, null)
@@ -76,7 +76,7 @@ resource "azuread_application" "app" {
         }
       }
       dynamic "saml2_token" {
-        for_each = try(optional_claims.value.saml2_token, null) != null ? [optional_claims.value.saml2_token] : []
+        for_each = try(optional_claims.value.saml2_token, null) != null ? optional_claims.value.saml2_token : []
         content {
           name                  = saml2_token.value.name
           source                = try(saml2_token.value.source, null)

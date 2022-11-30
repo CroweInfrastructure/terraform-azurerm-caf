@@ -110,3 +110,8 @@ output "proxy_addresses" {
   value       = azuread_group.gro.proxy_addresses
   description = "Email addresses for the group that direct to the same group mailbox"
 }
+
+output "rbac_id" {
+  value       = azuread_group.gro.object_id
+  description = "The object id used in the Role Assignemnt"
+}
