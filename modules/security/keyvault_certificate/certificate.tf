@@ -24,8 +24,8 @@ resource "azurerm_key_vault_certificate" "cert" {
       }
 
       trigger {
-        days_before_expiry  = try(var.settings.lifetime_percentage, null) != null ? var.settings.days_before_expiry : null
-        lifetime_percentage = try(var.settings.days_before_expiry, null) != null ? var.settings.lifetime_percentage : null
+        days_before_expiry  = try(var.settings.lifetime_percentage, null) == null ? var.settings.days_before_expiry : null
+        lifetime_percentage = try(var.settings.days_before_expiry, null) == null ? var.settings.lifetime_percentage : null
       }
     }
 
