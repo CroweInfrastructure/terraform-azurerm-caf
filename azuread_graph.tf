@@ -95,6 +95,7 @@ module "azuread_graph_application_certificate" {
   settings        = each.value
   remote_objects = {
     azuread_applications = local.combined_objects_azuread_applications
+    keyvault_certificates = local.combined_objects_keyvault_certificates
   }
 }
 output "azuread_graph_application_certificate" {
