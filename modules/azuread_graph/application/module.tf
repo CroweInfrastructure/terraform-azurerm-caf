@@ -97,11 +97,11 @@ resource "azuread_application" "app" {
   dynamic "required_resource_access" {
     for_each = try(var.settings.required_resource_access, null) != null ? var.settings.required_resource_access : []
     content {
-      resource_app_id = can(required_resource_access.value.resource_app.id) ? required_resource_access.value.resource_app.id : data.azuread_application_published_app_ids.well_known.result[required_resource_access.value.resource_app.well_known_key]
+      resource_app_id = can(required_resource_access.value.resource_app.id) ? required_resource_access.value.resource_app.id : try(var.remote_objects.azuread_applications[try(var.settings.azuread_application.lz_key, var.client_config.landingzone_key)][required_resource_access.value.resource_app.key].application_id, data.azuread_application_published_app_ids.well_known.result[required_resource_access.value.resource_app.well_known_key])
       dynamic "resource_access" {
         for_each = try(required_resource_access.value.resource_access, null) != null ? required_resource_access.value.resource_access : []
         content {
-          id   = resource_access.value.id
+          id   = can(required_resource_access.value.resource_app.id) ? resource_access.value.id : var.remote_objects.azuread_applications[try(var.settings.azuread_application.lz_key, var.client_config.landingzone_key)][resource_access.value.key].oauth2_permission_scope_ids.user_impersonation
           type = resource_access.value.type
         }
       }

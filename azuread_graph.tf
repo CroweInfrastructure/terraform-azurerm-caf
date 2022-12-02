@@ -42,6 +42,7 @@ module "azuread_graph_application" {
   settings        = each.value
   base_tags       = try(local.global_settings.inherit_tags, false) ? local.resource_groups[each.value.resource_group_key].tags : {}
   remote_objects = {
+    azuread_applications = try(var.remote_objects.azuread_applications, {})
   }
 }
 
