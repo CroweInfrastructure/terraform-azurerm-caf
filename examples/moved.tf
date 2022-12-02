@@ -7,7 +7,7 @@ moved {
   to   = module.example.module.azuread_graph_group_member
 }
 moved {
-  from = module.example.module.azuread_applications
+  from = module.example.module.azuread_applications_v1
   to   = module.example.module.azuread_graph_application
 }
 moved {
@@ -17,4 +17,8 @@ moved {
 moved {
   from = module.example.module.azuread_service_principals
   to   = module.example.module.azuread_graph_service_principal
+}
+moved {
+  from = module.example.module.azuread_service_principal_passwords
+  to   = module.example.module.azuread_graph_service_principal_password
 }

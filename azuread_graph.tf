@@ -309,7 +309,9 @@ module "azuread_graph_service_principal_password" {
   client_config   = local.client_config
   settings        = each.value
   remote_objects = {
-    azuread_service_principals = local.combined_objects_azuread_service_principals
+    service_principal_application_id = can(each.value.service_principal.application_id) ? each.value.service_principal.application_id : local.combined_objects_azuread_service_principals[try(each.value.service_principal.lz_key, local.client_config.landingzone_key)][each.value.service_principal.key].application_id
+    azuread_service_principals       = local.combined_objects_azuread_service_principals
+    keyvaults                        = local.combined_objects_keyvaults
   }
 }
 output "azuread_graph_service_principal_password" {
@@ -324,7 +326,7 @@ module "azuread_graph_user" {
   client_config   = local.client_config
   settings        = each.value
   remote_objects = {
-    #aad = local.aad
+    keyvaults = local.combined_objects_keyvaults
   }
 }
 output "azuread_graph_user" {
