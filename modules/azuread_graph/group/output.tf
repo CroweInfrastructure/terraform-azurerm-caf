@@ -112,6 +112,6 @@ output "proxy_addresses" {
 }
 
 output "rbac_id" {
-  value       = azuread_group.gro.object_id
+  value       = azuread_group.group.object_id
   description = "The object id used in the Role Assignemnt"
 }
