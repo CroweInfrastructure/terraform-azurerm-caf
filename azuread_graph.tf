@@ -264,6 +264,7 @@ module "azuread_graph_service_principal" {
   base_tags       = try(local.global_settings.inherit_tags, false) ? local.resource_groups[each.value.resource_group_key].tags : {}
   remote_objects = {
     azuread_applications = local.combined_objects_azuread_applications
+    azuread_graph_applications = module.azuread_graph_application
   }
 }
 output "azuread_graph_service_principal" {
