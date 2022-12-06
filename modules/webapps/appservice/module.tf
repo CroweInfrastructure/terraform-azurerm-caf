@@ -29,7 +29,7 @@ resource "azurerm_app_service" "app_service" {
 
     content {
       type         = var.identity.type
-      identity_ids = lower(var.identity.type) == "userassigned" ? local.managed_identities : null
+      identity_ids = lower(var.identity.type) == "userassigned" ? local.managed_identities : try(var.identity.identity_ids, null)
     }
   }
 
@@ -96,7 +96,7 @@ resource "azurerm_app_service" "app_service" {
     }
   }
 
-  app_settings = local.app_settings
+  app_settings = try(local.app_settings, var.app_settings)
 
   dynamic "connection_string" {
     for_each = var.connection_strings
