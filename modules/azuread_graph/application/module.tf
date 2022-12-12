@@ -12,7 +12,7 @@ resource "azuread_application" "app" {
       known_client_applications = try(api.value.known_client_applications, null)
       mapped_claims_enabled     = try(api.value.mapped_claims_enabled, null)
       dynamic "oauth2_permission_scope" {
-        for_each = try(api.value.oauth2_permission_scope, null) != null ? api.value.oauth2_permission_scope : []
+        for_each = try(api.value.oauth2_permission_scopes, null) != null ? api.value.oauth2_permission_scopes : []
         content {
           id                         = oauth2_permission_scope.value.id
           admin_consent_description  = try(oauth2_permission_scope.value.admin_consent_description, null)
@@ -58,7 +58,7 @@ resource "azuread_application" "app" {
     for_each = try(var.settings.optional_claims, null) != null ? [var.settings.optional_claims] : []
     content {
       dynamic "access_token" {
-        for_each = try(optional_claims.value.access_token, null) != null ? optional_claims.value.access_token : []
+        for_each = try(optional_claims.value.access_tokens, null) != null ? optional_claims.value.access_tokens : []
         content {
           name                  = access_token.value.name
           source                = try(access_token.value.source, null)
@@ -100,11 +100,11 @@ resource "azuread_application" "app" {
     }
   }
   dynamic "required_resource_access" {
-    for_each = try(var.settings.required_resource_access, null) != null ? var.settings.required_resource_access : []
+    for_each = try(var.settings.required_resources_access, null) != null ? var.settings.required_resources_access : []
     content {
       resource_app_id = can(required_resource_access.value.resource_app.id) ? required_resource_access.value.resource_app.id : try(var.remote_objects.azuread_applications[try(var.settings.azuread_application.lz_key, var.client_config.landingzone_key)][required_resource_access.value.resource_app.key].application_id, data.azuread_application_published_app_ids.well_known.result[required_resource_access.value.resource_app.well_known_key])
       dynamic "resource_access" {
-        for_each = try(required_resource_access.value.resource_access, null) != null ? required_resource_access.value.resource_access : []
+        for_each = try(required_resource_access.value.resources_access, null) != null ? required_resource_access.value.resources_access : []
         content {
           id   = can(required_resource_access.value.resource_app.id) ? resource_access.value.id : var.remote_objects.azuread_applications[try(var.settings.azuread_application.lz_key, var.client_config.landingzone_key)][resource_access.value.key].oauth2_permission_scope_ids.user_impersonation
           type = resource_access.value.type
