@@ -106,7 +106,7 @@ resource "azuread_application" "app" {
       dynamic "resource_access" {
         for_each = try(required_resource_access.value.resources_access, null) != null ? required_resource_access.value.resources_access : []
         content {
-          id   = can(required_resource_access.value.resource_app.id) ? resource_access.value.id : var.remote_objects.azuread_applications[try(var.settings.azuread_application.lz_key, var.client_config.landingzone_key)][resource_access.value.key].oauth2_permission_scope_ids.user_impersonation
+          id   = can(required_resource_access.value.resource_app.id) ? resource_access.value.id : var.remote_objects.azuread_applications[try(var.settings.azuread_application.lz_key, var.client_config.landingzone_key)][resource_access.value.key].oauth2_permission_scope_ids[var.settings.azuread_application.scope_id]
           type = resource_access.value.type
         }
       }
