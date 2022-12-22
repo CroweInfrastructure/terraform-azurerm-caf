@@ -68,6 +68,7 @@ resource "azuread_application" "app" {
       }
       dynamic "id_token" {
         for_each = try(optional_claims.value.id_tokens, null) != null ? optional_claims.value.id_tokens : []
+        content {
           name                  = id_token.value.name
           source                = try(id_token.value.source, null)
           essential             = try(id_token.value.essential, null)
