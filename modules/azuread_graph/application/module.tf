@@ -28,7 +28,7 @@ resource "azuread_application" "app" {
     }
   }
   dynamic "app_role" {
-    for_each = try(var.settings.app_role, null) != null ? [var.settings.app_role] : []
+    for_each = try(var.settings.app_roles, null) != null ? var.settings.app_roles : []
     content {
       id                   = app_role.value.id
       allowed_member_types = app_role.value.allowed_member_types
