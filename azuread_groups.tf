@@ -4,7 +4,7 @@
 #
 
 module "azuread_groups" {
-  source   = "./modules/azuread/groups"
+  source = "./modules/azuread/groups"
   ###############################################################################
   ### iterate over new groups only in this block
   ###############################################################################
