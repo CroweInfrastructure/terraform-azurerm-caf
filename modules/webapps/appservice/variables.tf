@@ -74,3 +74,14 @@ variable "vnets" {}
 variable "subnet_id" {}
 variable "private_endpoints" {}
 variable "private_dns" {}
+
+###########################################################
+### BEGIN CROWE_PBI_226389
+###########################################################
+variable "app_service_lifecycle_ignore_changes" {
+  type = list(string)
+  default = []
+}
+###########################################################
+### END CROWE_PBI_226389
+###########################################################
