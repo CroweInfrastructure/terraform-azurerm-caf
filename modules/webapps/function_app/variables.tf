@@ -69,10 +69,10 @@ variable "remote_objects" {
 ###########################################################
 ### BEGIN CROWE_PBI_226389
 ###########################################################
-variable "function_app_lifecycle_ignore_changes" {
-  type = list(string)
-  default = []
-}
+#variable "function_app_lifecycle_ignore_changes" {
+#  type = list(string)
+#  default = []
+#}
 ###########################################################
 ### END CROWE_PBI_226389
 ###########################################################
