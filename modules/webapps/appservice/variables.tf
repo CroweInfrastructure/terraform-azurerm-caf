@@ -82,6 +82,11 @@ variable "app_service_lifecycle_ignore_changes" {
   type = list(string)
   default = []
 }
+
+variable "app_service_lifecycle_ignore_changes1" {
+  type = list(string)
+  default = []
+}
 ###########################################################
 ### END CROWE_PBI_226389
 ###########################################################
