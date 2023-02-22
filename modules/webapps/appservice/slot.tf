@@ -158,12 +158,12 @@ resource "azurerm_app_service_slot" "slots" {
   #  ]), var.app_service_lifecycle_ignore_changes)
   #}
 
-   lifecycle {
-     ignore_changes = [
-       app_settings["WEBSITE_RUN_FROM_PACKAGE"],
-       site_config[0].scm_type
-     ]
-   }
+  # lifecycle {
+  #   ignore_changes = [
+  #     app_settings["WEBSITE_RUN_FROM_PACKAGE"],
+  #     site_config[0].scm_type
+  #   ]
+  # }
   ###########################################################
   ### END CROWE_PBI_226389
   ###########################################################
