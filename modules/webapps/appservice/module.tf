@@ -272,7 +272,7 @@ resource "azurerm_app_service" "app_service" {
   ###########################################################
   ### BEGIN CROWE_PBI_226389
   ###########################################################
-  var.app_service_lifecycle_ignore_changes1 = concat([
+  var.app_service_lifecycle_ignore_changes1 = merge([
       app_settings["WEBSITE_RUN_FROM_PACKAGE"],
       site_config[0].scm_type
     ], var.app_service_lifecycle_ignore_changes)
