@@ -15,7 +15,7 @@ resource "azurerm_function_app" "function_app" {
   ###########################################################
   #To avoid redeploy with existing customer
   lifecycle {
-    ignore_changes = concat([name], var.function_app_lifecycle_ignore_changes)
+    ignore_changes = concat(tolist([name]), var.function_app_lifecycle_ignore_changes)
   }
   # #To avoid redeploy with existing customer
   # lifecycle {
