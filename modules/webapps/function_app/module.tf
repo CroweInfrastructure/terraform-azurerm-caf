@@ -14,9 +14,9 @@ resource "azurerm_function_app" "function_app" {
   ### BEGIN CROWE_PBI_226389
   ###########################################################
   #To avoid redeploy with existing customer
-  lifecycle {
-    ignore_changes = concat(tolist([name]), var.function_app_lifecycle_ignore_changes)
-  }
+  #lifecycle {
+  #  ignore_changes = concat(tolist([name]), var.function_app_lifecycle_ignore_changes)
+  #}
   # #To avoid redeploy with existing customer
   # lifecycle {
   #   ignore_changes = [name]

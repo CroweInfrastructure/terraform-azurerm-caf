@@ -272,19 +272,22 @@ resource "azurerm_app_service" "app_service" {
   ###########################################################
   ### BEGIN CROWE_PBI_226389
   ###########################################################
-  lifecycle {
-    ignore_changes = concat([
-      app_settings["WEBSITE_RUN_FROM_PACKAGE"],
-      site_config[0].scm_type
-    ], var.app_service_lifecycle_ignore_changes)
-  }
+  
+  #var.app_service_lifecycle_ignore_changes1 = merge([
+  #    app_settings["WEBSITE_RUN_FROM_PACKAGE"],
+  #    site_config[0].scm_type
+  #  ], var.app_service_lifecycle_ignore_changes)
+#
+  #lifecycle {
+  #  ignore_changes = var.app_service_lifecycle_ignore_changes1
+  #}
 
-  # lifecycle {
-  #   ignore_changes = [
-  #     app_settings["WEBSITE_RUN_FROM_PACKAGE"],
-  #     site_config[0].scm_type
-  #   ]
-  # }
+   lifecycle {
+     ignore_changes = [
+       app_settings["WEBSITE_RUN_FROM_PACKAGE"],
+       site_config[0].scm_type
+     ]
+   }
   ###########################################################
   ### END CROWE_PBI_226389
   ###########################################################
