@@ -10,10 +10,21 @@ resource "azurecaf_name" "plan" {
 }
 
 resource "azurerm_function_app" "function_app" {
+  ###########################################################
+  ### BEGIN CROWE_PBI_226389
+  ###########################################################
   #To avoid redeploy with existing customer
   lifecycle {
-    ignore_changes = [name]
+    ignore_changes = concat([name], var.function_app_lifecycle_ignore_changes)
   }
+  # #To avoid redeploy with existing customer
+  # lifecycle {
+  #   ignore_changes = [name]
+  # }
+  ###########################################################
+  ### END CROWE_PBI_226389
+  ###########################################################
+  
   name                = azurecaf_name.plan.result
   location            = var.location
   resource_group_name = var.resource_group_name

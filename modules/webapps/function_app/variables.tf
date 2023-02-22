@@ -65,3 +65,14 @@ variable "dynamic_app_settings" {
 variable "remote_objects" {
   default = null
 }
+
+###########################################################
+### BEGIN CROWE_PBI_226389
+###########################################################
+variable "function_app_lifecycle_ignore_changes" {
+  type = list(string)
+  default = []
+}
+###########################################################
+### END CROWE_PBI_226389
+###########################################################
