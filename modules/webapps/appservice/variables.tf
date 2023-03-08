@@ -78,11 +78,11 @@ variable "private_dns" {}
 ###########################################################
 ### BEGIN CROWE_PBI_226389
 ###########################################################
-#variable "app_service_lifecycle_ignore_changes" {
-#  type = list(any)
-#  default = []
-#}
-#
+variable "app_service_lifecycle_ignore_changes" {
+  type    = list(any)
+  default = []
+}
+
 #variable "app_service_lifecycle_ignore_changes1" {
 #  type = list(any)
 #  default = []
