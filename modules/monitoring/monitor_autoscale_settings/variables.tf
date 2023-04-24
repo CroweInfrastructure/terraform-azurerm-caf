@@ -9,6 +9,9 @@ variable "settings" {
   default     = {}
   description = "Configuration object for the monitor autoscale setting resource"
 }
+variable "base_tags" {
+  default = {}
+}
 variable "remote_objects" {
   default = {}
 }
