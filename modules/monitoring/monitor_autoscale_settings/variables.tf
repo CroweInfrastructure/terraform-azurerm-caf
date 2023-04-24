@@ -5,9 +5,6 @@ variable "location" {}
 variable "virtual_machine_scale_sets" {
   default = {}
 }
-variable "tags" {
-  description = "(Required) map of tags for the deployment"
-}
 variable "settings" {
   default     = {}
   description = "Configuration object for the monitor autoscale setting resource"

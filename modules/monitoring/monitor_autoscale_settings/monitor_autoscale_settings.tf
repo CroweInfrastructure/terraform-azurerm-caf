@@ -13,7 +13,7 @@ resource "azurerm_monitor_autoscale_setting" "this" {
   resource_group_name = var.resource_group_name
   location            = var.location
   target_resource_id  = local.target_resource_id
-  tags                = merge(var.base_tags, local.tags)
+  tags                = merge(var.base_tags, try(var.settings.tags, {}))
 
   enabled = var.settings.enabled
 
